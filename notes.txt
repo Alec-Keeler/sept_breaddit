@@ -7,3 +7,42 @@ For new projects:
 
 Initialize sequelize
     npx sequelize init
+        remember to check for migration and seeder folders when pair programming
+
+Create a user in postgres
+
+Config the Config
+    change dialect to postgres
+    remove operatorsAliases key/value pair
+    add "seederStorage": "sequelize" key/value pair
+
+Create the database
+    npx sequelize db:create
+
+Create table files
+    npx sequelize-cli model:generate --name ModelName --attributes colName:dataType,colName2:dataType
+    
+    MODEL NAMES - CAPITALIZED AND SINGULAR (ie: User)
+    MIGRATION NAMES - CAPITALIZED AND PLURAL (ie: Users)
+
+Add constraints to migration files
+
+Run your migration(s)
+    npx sequelize db:migrate
+
+Seed data into tables
+    npx sequelize seed:generate --name someName (be a little descriptive)
+
+Run seed file(s)
+    npx sequelize db:seed:all
+
+Rolling back files
+    seeds: npx sequelize db:seed:undo:all
+    migrations: npx sequelize db:migrate:undo:all
+
+Write your associations
+    methods
+        hasMany
+        belongsTo
+        belongsToMany
+        hasOne
