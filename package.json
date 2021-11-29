@@ -1,0 +1,25 @@
+{
+  "name": "sept_breaddit",
+  "version": "1.0.0",
+  "description": "This is a demo app :)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alec-Keeler/sept_breaddit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alec-Keeler/sept_breaddit/issues"
+  },
+  "homepage": "https://github.com/Alec-Keeler/sept_breaddit#readme",
+  "dependencies": {
+    "pg": "^8.7.1",
+    "sequelize": "^5.22.4",
+    "sequelize-cli": "^5.5.1"
+  }
+}
