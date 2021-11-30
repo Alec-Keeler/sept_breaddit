@@ -8,25 +8,16 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkInsert('Users', [
+      return queryInterface.bulkInsert('Subbreaddits', [
         {
-          username: 'rawahahaha',
-          email: 'bananabread@yum.com',
-          password: 'banana',
+          title: 'General Bread Questions',
+          description: 'Here is a place to ask bread questions',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          username: 'alterNate',
-          email: 'nate@nate.com',
-          password: 'potato',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          username: 'danYELL',
-          email: 'dan@dan.dan',
-          password: 'wohqltj0ut',
+          title: 'Pictures of Bread',
+          description: 'Here is a place to post pictures of bread',
           createdAt: new Date(),
           updatedAt: new Date(),
         }
@@ -40,6 +31,6 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkDelete('Users', null, {});
+      return queryInterface.bulkDelete('Subbreaddits', null, {});
   }
 };

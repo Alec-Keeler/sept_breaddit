@@ -22,7 +22,9 @@ module.exports = {
         references: { model: 'Users' }
       },
       subId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Subbreaddits' }
       },
       createdAt: {
         allowNull: false,
