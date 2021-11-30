@@ -46,3 +46,12 @@ Write your associations
         belongsTo
         belongsToMany
         hasOne
+
+Sequelize query methods:
+    build (has to be with save)
+    create
+    findByPk
+    findOne
+    findAll
+    save (used for updating or building)
+    destroy
