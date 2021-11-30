@@ -10,14 +10,19 @@ module.exports = {
       */
       return queryInterface.bulkInsert('Users', [
         {
-          username: 'somebreadpun',
-          email: 'bread@pun.com',
+          username: 'rawahahaha',
+          email: 'bananabread@yum.com',
           password: 'banana'
         },
         {
-          username: 'nathaniel',
+          username: 'alterNate',
           email: 'nate@nate.com',
           password: 'potato'
+        },
+        {
+          username: 'danYELL',
+          email: 'dan@dan.dan',
+          password: 'wohqltj0ut'
         }
       ], {});
   },
