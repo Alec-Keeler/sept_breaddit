@@ -155,4 +155,32 @@ async function getSubAndPosts(subId) {
     await sequelize.close()
 }
 
-getSubAndPosts(1);
+// getSubAndPosts(1);
+
+async function getUserAndThings(email) {
+    const user = await User.findOne({
+        where: {email},
+        include: [{model: Post, include: Subbreaddit}, Subbreaddit]
+    })
+
+    console.log(user.Subbreaddits[0].title)
+    await sequelize.close()
+}
+
+// getUserAndThings('bananabread@yum.com');
+
+async function getUserAndPostsPlusSubs(id) {
+    const user = await User.findByPk(id, {
+        include: {
+            model: Post,
+            include: {
+                model: Subbreaddit
+            }
+        }
+    })
+
+    console.log(user)
+    await sequelize.close()
+}
+
+getUserAndPostsPlusSubs(3)
