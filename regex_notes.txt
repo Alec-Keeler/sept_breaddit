@@ -1,0 +1,23 @@
+* = Zero or more
+? = 0 or 1
++ = 1 or more
+{3, 6}
+\ = escapes next character
+. = any character (not a new line)
+^ = start of input
+$ = end of input
+[ ] = list of optional characters
+[a-z] = range of characters
+[^] = negative match
+( ) = group of characters
+
+\w = word characters (letters, digits, _)
+\d = digits
+\s = whitespace
+
+Email regex: [\w\d-]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$
+
+phoneNum regex: ^\(?\d{3}[\)-]\d{3}-\d{4}$
+
+(123)456-7890
+123-456-7890
