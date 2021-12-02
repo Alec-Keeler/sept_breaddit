@@ -1,7 +1,8 @@
 html
     head
         title= title
+        a(href="/users") Users
     body
-        h1(class = 'someClass' id = 'someId') Welcome to Breaddit!
+        h1(class = `fruit${fruit}` id = 'someId') Welcome to Breaddit!
             p.anotherClass.chainClass#anotherId This is a child of the h1 element
-            //- p This is a #{class}
+            p This is a #{fruit}
