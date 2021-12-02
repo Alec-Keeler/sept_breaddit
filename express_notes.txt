@@ -1,0 +1,36 @@
+Reasons to use Express:
+    Easy Route Handling
+    Easy to apply Middleware
+    Easy rendering with HTML templates (pug)
+
+First Steps
+npm install packages
+    express@^4.0.0
+    pug
+
+Create our app.js file (backbone of application)
+    Import the express module
+        const express = require('express')
+    Use the express function to create the app object
+        const app = express()
+Set up app.listen so we can start a server
+    install nodemon package
+
+App methods for route handlers:
+    get
+    post
+    put/patch
+    delete
+    all
+    set (for our view engine)
+    use
+
+Methods for sending a response to clien:
+    send
+    render
+    redirect
+    json
+
+Setting up pug
+    create a views directory
+    app.set the view engine
