@@ -34,3 +34,11 @@ Methods for sending a response to clien:
 Setting up pug
     create a views directory
     app.set the view engine
+
+Setting up router files
+    import express
+    create router object
+        const router = express.Router()
+    export the router object
+    import router object in app.js
+    apply the router to the app
