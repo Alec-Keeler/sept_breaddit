@@ -42,3 +42,12 @@ Setting up router files
     export the router object
     import router object in app.js
     apply the router to the app
+
+csrfProtection:
+ npm install:
+    csurf
+    cookie-parser
+
+in users.js:
+    const csurf = require('csurf')
+    const csrfProtection = csurf({cookie: true})

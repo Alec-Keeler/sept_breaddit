@@ -1,8 +1,6 @@
-html
-    head
-        title= title
-        a(href="/users") Users
-    body
-        h1(class = `fruit${fruit}` id = 'someId') Welcome to Breaddit!
-            p.anotherClass.chainClass#anotherId This is a child of the h1 element
-            p This is a #{fruit}
+extends layout.pug
+
+block content
+    h1(class = `fruit${fruit}` id = 'someId') Welcome to Breaddit!
+        p.anotherClass.chainClass#anotherId This is a child of the h1 element
+        p This is a #{fruit}

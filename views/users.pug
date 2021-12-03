@@ -1,8 +1,13 @@
-html
-    head 
-        title= title
-    body
-        each user in users
-            h2= user.username
-            p= user.email 
-            p= user.password
+extends layout.pug 
+include utils.pug
+
+block content
+    table
+        thead
+            tr
+                th Username
+                th Email 
+                th Password
+        tbody
+            each user in users
+                +userData(user)
