@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const { User } = require('./models');
+const { User } = require('./db/models');
 const userRouter = require('./routes/users');
 const cookieParser = require('cookie-parser');
 
@@ -32,5 +32,7 @@ app.all(/^\/a[abcdef]+_.$/, (req, res) => {
     res.send('Page not found')
 })
 
-const port = 8080;
-app.listen(port, () => console.log(`App is listening on port ${port}...`))
+// const port = 8080;
+// app.listen(port, () => console.log(`App is listening on port ${port}...`))
+
+module.exports = app;
