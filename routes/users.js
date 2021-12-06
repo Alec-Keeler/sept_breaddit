@@ -4,6 +4,12 @@ const { User } = require('../db/models');
 const csurf = require('csurf')
 const csrfProtection = csurf({ cookie: true })
 
+const asyncHandler = (handler) => {
+    return (req, res, next) => {
+        return handler(req, res, next).catch(next);
+    };
+};
+
 router.use((req, res, next) => {
     console.log('hello from users router', req.path)
     next()
@@ -15,14 +21,14 @@ const testBanana = (req, res, next) => {
 }
 
 // /users/
-router.get('/', testBanana, async (req, res) => {
+router.get('/', testBanana, asyncHandler(async (req, res) => {
     const users = await User.findAll()
     if (req.banana) {
         res.render('users', { title: 'Users List', users })
     } else {
         res.send('where is the banana')
     }
-})
+}))
 
 // method: get path: /users/:id
 router.get('/:id(\\d+)', async (req, res, next) => {
@@ -46,7 +52,7 @@ const emailChecker = (req, res, next) => {
 }
 
 
-router.post('/signup', emailChecker, csrfProtection, async(req, res) => {
+router.post('/signup', emailChecker, csrfProtection, asyncHandler(async(req, res) => {
     console.log(req.body)
     const { username, email, password } = req.body
     if (req.errors.length === 0) {
@@ -61,7 +67,7 @@ router.post('/signup', emailChecker, csrfProtection, async(req, res) => {
         const errors = req.errors
         res.render('signup', {csrfToken: req.csrfToken(), errors, data: req.body})
     }
-})
+}))
 
 
 module.exports = router;

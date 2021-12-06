@@ -27,12 +27,26 @@ app.get('/', (req, res) => {
 
 // /about/, /foo/, /about-foo/, /about_foo/
 // ! /about/foo, /something/somethingelse, /word/word/word
-app.all(/^\/a[abcdef]+_.$/, (req, res) => {
-    console.log(req.method, req.path)
-    res.send('Page not found')
+// app.all(/^\/a[abcdef]+_.$/, (req, res) => {
+//     console.log(req.method, req.path)
+//     res.send('Page not found')
+// })
+
+app.use((req, res, next) => {
+    const err = new Error('Page could not be found')
+    err.status = 404;
+    next(err)
 })
 
-// const port = 8080;
-// app.listen(port, () => console.log(`App is listening on port ${port}...`))
+app.use((err, req, res, next) => {
+    console.log('We are in error handling middleware')
+    console.error(err)
+    res.send('There was an error')
+})
+
+app.use((req, res, next) => {
+    console.log('WE SHOULD NOT BE HERE D:')
+})
+
 
 module.exports = app;
