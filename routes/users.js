@@ -3,6 +3,7 @@ const router = express.Router();
 const { User } = require('../db/models');
 const csurf = require('csurf')
 const csrfProtection = csurf({ cookie: true })
+const bcrypt = require('bcryptjs')
 
 const asyncHandler = (handler) => {
     return (req, res, next) => {
@@ -55,12 +56,14 @@ const emailChecker = (req, res, next) => {
 router.post('/signup', emailChecker, csrfProtection, asyncHandler(async(req, res) => {
     console.log(req.body)
     const { username, email, password } = req.body
+    const hashedPassword = await bcrypt.hash(password, 12)
     if (req.errors.length === 0) {
         const user = await User.create({
             username,
             email,
-            password
+            hashedPassword
         })
+        req.session.user = {userId: user.id, username}
         res.redirect('/users')
     } else {
         console.log(req.errors)
@@ -68,6 +71,14 @@ router.post('/signup', emailChecker, csrfProtection, asyncHandler(async(req, res
         res.render('signup', {csrfToken: req.csrfToken(), errors, data: req.body})
     }
 }))
+
+router.get('/logout', (req, res) => {
+    delete req.session.user
+    // res.redirect('/')
+    req.session.save(() => {
+        res.redirect('/')
+    })
+})
 
 
 module.exports = router;

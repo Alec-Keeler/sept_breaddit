@@ -2,21 +2,37 @@ const express = require('express');
 const app = express();
 const { User } = require('./db/models');
 const userRouter = require('./routes/users');
+const postRouter = require('./routes/posts');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 app.set('view engine', 'pug')
 app.use(express.static('public'))
 // middleware to access form data vvvv
 app.use(express.urlencoded({extended: false}))
-app.use(cookieParser())
+
+const sessSecret = 'password'
+app.use(cookieParser(sessSecret))
+
+app.use(session({
+    secret: sessSecret,
+    resave: false, //prevents race condition
+    saveUninitialized: false
+}))
 
 app.use((req, res, next) => {
     req.banana = 'banana'
     next()
 })
 
+app.use((req, res, next) => {
+    console.log('session: ', req.session)
+    next()
+})
+
 app.use('/users', userRouter)
 app.use('/banana', userRouter)
+app.use('/posts', postRouter);
 
 // path: / method: get
 app.get('/', (req, res) => {
