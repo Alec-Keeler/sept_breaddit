@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    a(href="/posts/new") Create New Post
+    each post in posts 
+        div(id=`post-container-${post.id}`).post-box
+            h2= post.title
+            p= post.content
+            a(href=`/posts/${post.id}`) Take me to the post!
+            if locals.userId === post.userId
+                form(action=`/posts/${post.id}/delete` method="post") 
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    button(type="submit" id=post.id).delete-btn Delete

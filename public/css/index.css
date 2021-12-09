@@ -1,3 +1,7 @@
 .navLinks {
     margin: 5px;
 }
+
+.post-box {
+    border: 1px solid black
+}
