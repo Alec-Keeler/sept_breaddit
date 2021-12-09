@@ -43,4 +43,15 @@ router.post('/:id/delete', csrfProtection, async(req, res) => {
     }
 })
 
+router.delete('/:id', async(req, res) => {
+    const post = await Post.findByPk(req.params.id)
+    if (post) {
+        await post.destroy();
+        // res.redirect('/posts')
+        res.json({message: 'Success'})
+    } else {
+        res.json({message: 'Failure D:'})
+    }
+})
+
 module.exports = router;
