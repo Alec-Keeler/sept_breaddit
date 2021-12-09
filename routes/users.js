@@ -72,6 +72,24 @@ router.post('/signup', emailChecker, csrfProtection, asyncHandler(async(req, res
     }
 }))
 
+router.get('/login', csrfProtection, (req, res) => {
+    res.render('login', {csrfToken: req.csrfToken()})
+})
+
+router.post('/login', csrfProtection, async(req, res) => {
+    const user = await User.findOne({
+        email: req.body.email
+    })
+
+    const isPass = await bcrypt.compare(req.body.password, user.hashedPassword)
+    if (isPass) {
+        req.session.user = { userId: user.id, username: user.username }
+        res.redirect('/')
+    } else {
+        res.redirect('/users/login')
+    }
+})
+
 router.get('/logout', (req, res) => {
     delete req.session.user
     // res.redirect('/')
