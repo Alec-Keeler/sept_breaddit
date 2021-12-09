@@ -77,10 +77,12 @@ router.get('/login', csrfProtection, (req, res) => {
 })
 
 router.post('/login', csrfProtection, async(req, res) => {
+    const { email } = req.body;
     const user = await User.findOne({
-        email: req.body.email
+        where: {
+            email
+        }
     })
-
     const isPass = await bcrypt.compare(req.body.password, user.hashedPassword)
     if (isPass) {
         req.session.user = { userId: user.id, username: user.username }

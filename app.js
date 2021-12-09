@@ -30,6 +30,17 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use((req, res, next) => {
+    if (req.session.user) {
+        res.locals.auth = true
+        res.locals.userId = req.session.user.userId
+        next()
+    } else {
+        res.locals.auth = false
+        next()
+    }
+})
+
 app.use('/users', userRouter)
 app.use('/banana', userRouter)
 app.use('/posts', postRouter);
